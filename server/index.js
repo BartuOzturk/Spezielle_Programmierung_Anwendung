@@ -8,8 +8,8 @@ app.use(express.json());
 
 const db = mysql.createConnection({
   user: "root",
-  host: "localhost",
-  password: "password",
+  host: "db",
+  password: "Bartu.0408",
   database: "employeeSystem",
 });
 
@@ -21,15 +21,15 @@ app.post("/create", (req, res) => {
   const wage = req.body.wage;
 
   db.query(
-    "INSERT INTO employees (name, age, country, position, wage) VALUES (?,?,?,?,?)",
-    [name, age, country, position, wage],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send("Values Inserted");
+      "INSERT INTO employees (name, age, country, position, wage) VALUES (?,?,?,?,?)",
+      [name, age, country, position, wage],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send("Values Inserted");
+        }
       }
-    }
   );
 });
 
@@ -47,15 +47,15 @@ app.put("/update", (req, res) => {
   const id = req.body.id;
   const wage = req.body.wage;
   db.query(
-    "UPDATE employees SET wage = ? WHERE id = ?",
-    [wage, id],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(result);
+      "UPDATE employees SET wage = ? WHERE id = ?",
+      [wage, id],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(result);
+        }
       }
-    }
   );
 });
 
